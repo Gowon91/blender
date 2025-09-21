@@ -1,0 +1,11 @@
+
+alias,ifc_class
+CCTV,IfcAudioVisualAppliance
+Camera,IfcAudioVisualAppliance
+Playground,IfcSpace
+Parking,IfcSpace
+Stair,IfcSpace
+Ramp,IfcRamp
+Door,IfcDoor
+LightFixture,IfcLightFixture
+Alarm,IfcAlarm

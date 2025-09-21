@@ -1,0 +1,188 @@
+{
+  "meta": {
+    "schemaVersion": "1.0",
+    "title": "CPTED-IDS b-baseline",
+    "createdAt": "2025-09-20T20:30",
+    "locale": "ko-KR"
+  },
+  "requirements": [
+    {
+      "object": "IfcFence",
+      "pset": "Pset_CPTED_KR_Fence",
+      "properties": [
+        {
+          "name": "FenceHeight",
+          "method": "b",
+          "dtype": "number",
+          "unit": "mm",
+          "label": "담장 높이",
+          "desc": "담장의 Z축 높이(mm).",
+          "b": {
+            "compute": "axis",
+            "source": "bbox",
+            "axis": "Z",
+            "scale": 1000.0,
+            "precision": 0,
+            "rise_axis": "Z",
+            "run_plane": "XY"
+          }
+        }
+      ]
+    },
+    {
+      "object": "IfcGeographicElement",
+      "pset": "Pset_CPTED_KR_Vegetation",
+      "properties": [
+        {
+          "name": "ShrubHeight",
+          "method": "b",
+          "dtype": "number",
+          "unit": "mm",
+          "label": "울타리용 조경수 높이",
+          "desc": "울타리용 조경수의 Z축 높이(mm).",
+          "b": {
+            "compute": "axis",
+            "source": "bbox",
+            "axis": "Z",
+            "scale": 1000.0,
+            "precision": 0,
+            "rise_axis": "Z",
+            "run_plane": "XY"
+          }
+        }
+      ]
+    },
+    {
+      "object": "IfcFence",
+      "pset": "Pset_CPTED_UK_Boundary",
+      "properties": [
+        {
+          "name": "FrontBoundaryWallHeight",
+          "method": "b",
+          "dtype": "number",
+          "unit": "mm",
+          "label": "전면 경계 벽 높이",
+          "desc": "전면 경계 담장의 Z축 높이(mm).",
+          "b": {
+            "compute": "axis",
+            "source": "bbox",
+            "axis": "Z",
+            "scale": 1000.0,
+            "precision": 0,
+            "rise_axis": "Z",
+            "run_plane": "XY"
+          }
+        },
+        {
+          "name": "SideRearBoundaryHeight",
+          "method": "b",
+          "dtype": "number",
+          "unit": "mm",
+          "label": "측·후면 경계 높이",
+          "desc": "측·후면 경계 울타리/담장의 Z축 높이(mm).",
+          "b": {
+            "compute": "axis",
+            "source": "bbox",
+            "axis": "Z",
+            "scale": 1000.0,
+            "precision": 0,
+            "rise_axis": "Z",
+            "run_plane": "XY"
+          }
+        }
+      ]
+    },
+    {
+      "object": "IfcDoor",
+      "pset": "Pset_CPTED_UK_Gate",
+      "properties": [
+        {
+          "name": "GateHeight",
+          "method": "b",
+          "dtype": "number",
+          "unit": "mm",
+          "label": "후면 출입 게이트 높이",
+          "desc": "후면 출입을 제어하는 게이트(문)의 Z축 높이(mm).",
+          "b": {
+            "compute": "axis",
+            "source": "bbox",
+            "axis": "Z",
+            "scale": 1000.0,
+            "precision": 0,
+            "rise_axis": "Z",
+            "run_plane": "XY"
+          }
+        }
+      ]
+    },
+    {
+      "object": "IfcDoor",
+      "pset": "Pset_CPTED_NL_Gate",
+      "properties": [
+        {
+          "name": "GateHeight",
+          "method": "b",
+          "dtype": "number",
+          "unit": "mm",
+          "label": "게이트 높이",
+          "desc": "공용 출입 게이트의 Z축 높이(mm).",
+          "b": {
+            "compute": "axis",
+            "source": "bbox",
+            "axis": "Z",
+            "scale": 1000.0,
+            "precision": 0,
+            "rise_axis": "Z",
+            "run_plane": "XY"
+          }
+        }
+      ]
+    },
+    {
+      "object": "IfcGeographicElement",
+      "pset": "Pset_CPTED_NL_Vegetation",
+      "properties": [
+        {
+          "name": "LowVegetationHeight",
+          "method": "b",
+          "dtype": "number",
+          "unit": "mm",
+          "label": "저수목 높이",
+          "desc": "저수목의 Z축 높이(mm).",
+          "b": {
+            "compute": "axis",
+            "source": "bbox",
+            "axis": "Z",
+            "scale": 1000.0,
+            "precision": 0,
+            "rise_axis": "Z",
+            "run_plane": "XY"
+          }
+        }
+      ]
+    },
+    {
+      "object": "IfcFence",
+      "pset": "Pset_CPTED_JP_Fence",
+      "properties": [
+        {
+          "name": "FenceHeight",
+          "method": "b",
+          "dtype": "number",
+          "unit": "mm",
+          "label": "フェンス高さ",
+          "desc": "휀스 또는 담장의 Z축 높이(mm).",
+          "b": {
+            "compute": "axis",
+            "source": "bbox",
+            "axis": "Z",
+            "scale": 1000.0,
+            "precision": 0,
+            "rise_axis": "Z",
+            "run_plane": "XY"
+          }
+        }
+      ]
+    }
+  ]
+}
