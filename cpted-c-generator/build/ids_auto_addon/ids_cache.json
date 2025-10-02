@@ -1,0 +1,276 @@
+{
+  "version": 1,
+  "generated_at": "2025-09-21T06:02:10.399883Z",
+  "requirements": [
+    {
+      "requirement_id": "C1-ALARM-25M",
+      "object": "IfcAlarm",
+      "pset": "Pset_SpaceSecurity",
+      "property": "DistanceToNearestAlarm",
+      "method": "c",
+      "key": "IfcAlarm.Pset_SpaceSecurity.DistanceToNearestAlarm",
+      "meta": {
+        "unit": "m",
+        "tolerance": 0.01,
+        "c": {
+          "relation": "distance_to",
+          "metric": "min_distance",
+          "tie_breaker": "nearest",
+          "target": {
+            "ifc": "IfcAlarm",
+            "filter": "Name~\"Emergency|비상|Help|SOS|Alarm\""
+          },
+          "threshold": {
+            "op": "<=",
+            "value": 25.0
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C1-DOOR-LIGHT-7_5M",
+      "object": "IfcDoor",
+      "pset": "Pset_SpaceSecurity",
+      "property": "NearestLightAtDoorDist",
+      "method": "c",
+      "key": "IfcDoor.Pset_SpaceSecurity.NearestLightAtDoorDist",
+      "meta": {
+        "unit": "m",
+        "tolerance": 0.01,
+        "c": {
+          "relation": "distance_to",
+          "metric": "min_distance",
+          "tie_breaker": "nearest",
+          "target": {
+            "ifc": "IfcLightFixture"
+          },
+          "threshold": {
+            "op": "<=",
+            "value": 7.5
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C1-RAMP-LIGHT-7_5M",
+      "object": "IfcRamp",
+      "pset": "Pset_SpaceSecurity",
+      "property": "NearestLightOnRampDist",
+      "method": "c",
+      "key": "IfcRamp.Pset_SpaceSecurity.NearestLightOnRampDist",
+      "meta": {
+        "unit": "m",
+        "tolerance": 0.01,
+        "c": {
+          "relation": "distance_to",
+          "metric": "min_distance",
+          "tie_breaker": "nearest",
+          "target": {
+            "ifc": "IfcLightFixture"
+          },
+          "threshold": {
+            "op": "<=",
+            "value": 7.5
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C1-WALK-LIGHT-20M",
+      "object": "IfcLightFixture",
+      "pset": "Pset_SpaceSecurity",
+      "property": "SpacingToNearestWalkLight",
+      "method": "c",
+      "key": "IfcLightFixture.Pset_SpaceSecurity.SpacingToNearestWalkLight",
+      "meta": {
+        "unit": "m",
+        "tolerance": 0.01,
+        "c": {
+          "relation": "distance_to",
+          "metric": "min_distance",
+          "tie_breaker": "nearest",
+          "target": {
+            "ifc": "IfcLightFixture",
+            "filter": "Name~\"Walk|보행|Path|Footway|보도\""
+          },
+          "threshold": {
+            "op": "<=",
+            "value": 20.0
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C2-STAIR-CCTV",
+      "object": "IfcSpace",
+      "pset": "Pset_SpaceSecurity",
+      "property": "HasCCTVInStair",
+      "method": "c",
+      "key": "IfcSpace.Pset_SpaceSecurity.HasCCTVInStair",
+      "meta": {
+        "c": {
+          "relation": "within",
+          "metric": "count",
+          "target": {
+            "ifc": "IfcAudioVisualAppliance",
+            "filter": "Type~\"Camera|CCTV\"|Name~\"Camera|CCTV\""
+          },
+          "scope": {
+            "filter": "Name~\"계단|Stair\""
+          },
+          "threshold": {
+            "op": ">=",
+            "value": 1.0
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C2-STAIR-WINDOW",
+      "object": "IfcSpace",
+      "pset": "Pset_SpaceSecurity",
+      "property": "HasExteriorWindowInStair",
+      "method": "c",
+      "key": "IfcSpace.Pset_SpaceSecurity.HasExteriorWindowInStair",
+      "meta": {
+        "c": {
+          "relation": "within",
+          "metric": "count",
+          "target": {
+            "ifc": "IfcWindow"
+          },
+          "scope": {
+            "filter": "Name~\"계단|Stair\""
+          },
+          "threshold": {
+            "op": ">=",
+            "value": 1.0
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C2-ENTRANCE-LIGHT",
+      "object": "IfcSpace",
+      "pset": "Pset_SpaceSecurity",
+      "property": "HasEntranceContinuousLighting",
+      "method": "c",
+      "key": "IfcSpace.Pset_SpaceSecurity.HasEntranceContinuousLighting",
+      "meta": {
+        "c": {
+          "relation": "within",
+          "metric": "count",
+          "target": {
+            "ifc": "IfcLightFixture"
+          },
+          "scope": {
+            "filter": "Name~\"Entrance|출입구|Lobby|현관\""
+          },
+          "threshold": {
+            "op": ">=",
+            "value": 1.0
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C2-PLAYGROUND-SURV",
+      "object": "IfcSpace",
+      "pset": "Pset_SpaceSecurity",
+      "property": "HasSurveillanceInPlayground",
+      "method": "c",
+      "key": "IfcSpace.Pset_SpaceSecurity.HasSurveillanceInPlayground",
+      "meta": {
+        "c": {
+          "relation": "within",
+          "metric": "count",
+          "target": {
+            "ifc": "IfcAudioVisualAppliance",
+            "filter": "Type~\"Camera|CCTV\"|Name~\"경비|Security|Guard|Concierge|Reception\""
+          },
+          "scope": {
+            "filter": "Name~\"놀이터|Playground|Play Area\""
+          },
+          "threshold": {
+            "op": ">=",
+            "value": 1.0
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C2-PARKING-CCTV",
+      "object": "IfcSpace",
+      "pset": "Pset_SpaceSecurity",
+      "property": "HasCCTVInParking",
+      "method": "c",
+      "key": "IfcSpace.Pset_SpaceSecurity.HasCCTVInParking",
+      "meta": {
+        "c": {
+          "relation": "within",
+          "metric": "count",
+          "target": {
+            "ifc": "IfcAudioVisualAppliance",
+            "filter": "Type~\"Camera|CCTV\"|Name~\"Camera|CCTV\""
+          },
+          "scope": {
+            "filter": "Name~\"주차|Parking|Carpark\""
+          },
+          "threshold": {
+            "op": ">=",
+            "value": 1.0
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C2-GATE-LIGHT",
+      "object": "IfcSpace",
+      "pset": "Pset_SpaceSecurity",
+      "property": "HasLightingWithinGateZone",
+      "method": "c",
+      "key": "IfcSpace.Pset_SpaceSecurity.HasLightingWithinGateZone",
+      "meta": {
+        "c": {
+          "relation": "within",
+          "metric": "count",
+          "target": {
+            "ifc": "IfcLightFixture"
+          },
+          "scope": {
+            "filter": "Name~\"Gate|게이트|공동출입|공용출입\""
+          },
+          "threshold": {
+            "op": ">=",
+            "value": 1.0
+          }
+        }
+      }
+    },
+    {
+      "requirement_id": "C2-UNDERPASS-ALARM",
+      "object": "IfcSpace",
+      "pset": "Pset_SpaceSecurity",
+      "property": "HasEmergencyCallInUnderpass",
+      "method": "c",
+      "key": "IfcSpace.Pset_SpaceSecurity.HasEmergencyCallInUnderpass",
+      "meta": {
+        "c": {
+          "relation": "within",
+          "metric": "count",
+          "target": {
+            "ifc": "IfcAlarm",
+            "filter": "Name~\"Emergency|비상|Help|SOS|Alarm\""
+          },
+          "scope": {
+            "filter": "Name~\"지하도|Underpass|Subway Passage|지하 보행로\""
+          },
+          "threshold": {
+            "op": ">=",
+            "value": 1.0
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+##
+## Blender add-on manifest (Jinja2 template)
+##
+## This file defines the manifest for the generated IDS add-on. The
+## placeholders such as {{ADDON_ID}}, {{VERSION}}, etc., are filled in by
+## the generator. See Blender documentation for the structure of this
+## manifest.
+
+schema_version = "1.0.0"
+id = "{{ADDON_ID}}"
+version = "{{VERSION}}"
+name = "{{ADDON_NAME}}"
+tagline = "Populate IFC Psets/Properties from IDS rules (c-1/c-2)"
+# The Blender extension schema requires a single maintainer string.
+maintainer = "Generated"
+type = "add-on"
+# Minimum Blender version required for this add-on.
+blender_version_min = "{{BLENDER_VERSION_MIN}}"
+# License must be a list of SPDX identifiers.
+license = ["GPL-3.0-or-later"]
+website = "https://example.local"

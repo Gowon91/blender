@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  CPTED b‑타입 요구사항 베이스라인 XML
+
+  이 파일은 지오메트리 기반(b 유형) 자동 채움 테스트를 위해 작성된 간단한 IDS 예제이다.
+  각 Requirement 블록은 객체(Object)와 Pset, 그리고 측정하려는 Property를 정의한다.
+  method="b" 로 지정된 Property는 블렌더 애드온에서 자동으로 치수를 계산하여 채운다.
+
+  주의:
+  - 실제 규정의 임계값(예: 높이 1.8m 이상) 비교는 포함하지 않는다. b 유형은 값을 추출만 한다.
+  - axis 모드에서는 바운딩박스의 Z 방향 길이를 추출하고 mm 단위(스케일 1000)로 변환한다.
+  - slope 모드는 예시로만 남겨두었으며, 본 베이스라인에는 slope 항목이 없다.
+-->
+<IDS schemaVersion="1.0" title="CPTED-IDS b-baseline" locale="ko-KR" createdAt="2025-09-20T20:30">
+  <!-- 한국: 담장 높이, 울타리용 조경수 높이 -->
+  <Requirement>
+    <Object>IfcFence</Object>
+    <Pset>Pset_CPTED_KR_Fence</Pset>
+    <Property name="FenceHeight" method="b" dtype="number" unit="mm"
+              label="담장 높이" desc="담장의 Z축 높이(mm).">
+      <b_compute>axis</b_compute>
+      <b_source>bbox</b_source>
+      <b_axis>Z</b_axis>
+      <b_scale>1000</b_scale>
+      <b_precision>0</b_precision>
+    </Property>
+  </Requirement>
+  <Requirement>
+    <Object>IfcGeographicElement</Object>
+    <Pset>Pset_CPTED_KR_Vegetation</Pset>
+    <Property name="ShrubHeight" method="b" dtype="number" unit="mm"
+              label="울타리용 조경수 높이" desc="울타리용 조경수의 Z축 높이(mm).">
+      <b_compute>axis</b_compute>
+      <b_source>bbox</b_source>
+      <b_axis>Z</b_axis>
+      <b_scale>1000</b_scale>
+      <b_precision>0</b_precision>
+    </Property>
+  </Requirement>
+
+  <!-- 영국: 경계 담장/울타리 높이 및 게이트 높이 -->
+  <Requirement>
+    <Object>IfcFence</Object>
+    <Pset>Pset_CPTED_UK_Boundary</Pset>
+    <Property name="FrontBoundaryWallHeight" method="b" dtype="number" unit="mm"
+              label="전면 경계 벽 높이" desc="전면 경계 담장의 Z축 높이(mm).">
+      <b_compute>axis</b_compute>
+      <b_source>bbox</b_source>
+      <b_axis>Z</b_axis>
+      <b_scale>1000</b_scale>
+      <b_precision>0</b_precision>
+    </Property>
+    <Property name="SideRearBoundaryHeight" method="b" dtype="number" unit="mm"
+              label="측·후면 경계 높이" desc="측·후면 경계 울타리/담장의 Z축 높이(mm).">
+      <b_compute>axis</b_compute>
+      <b_source>bbox</b_source>
+      <b_axis>Z</b_axis>
+      <b_scale>1000</b_scale>
+      <b_precision>0</b_precision>
+    </Property>
+  </Requirement>
+  <Requirement>
+    <Object>IfcDoor</Object>
+    <Pset>Pset_CPTED_UK_Gate</Pset>
+    <Property name="GateHeight" method="b" dtype="number" unit="mm"
+              label="후면 출입 게이트 높이" desc="후면 출입을 제어하는 게이트(문)의 Z축 높이(mm).">
+      <b_compute>axis</b_compute>
+      <b_source>bbox</b_source>
+      <b_axis>Z</b_axis>
+      <b_scale>1000</b_scale>
+      <b_precision>0</b_precision>
+    </Property>
+  </Requirement>
+
+  <!-- 네덜란드: 게이트 높이, 저수목 높이 -->
+  <Requirement>
+    <Object>IfcDoor</Object>
+    <Pset>Pset_CPTED_NL_Gate</Pset>
+    <Property name="GateHeight" method="b" dtype="number" unit="mm"
+              label="게이트 높이" desc="공용 출입 게이트의 Z축 높이(mm).">
+      <b_compute>axis</b_compute>
+      <b_source>bbox</b_source>
+      <b_axis>Z</b_axis>
+      <b_scale>1000</b_scale>
+      <b_precision>0</b_precision>
+    </Property>
+  </Requirement>
+  <Requirement>
+    <Object>IfcGeographicElement</Object>
+    <Pset>Pset_CPTED_NL_Vegetation</Pset>
+    <Property name="LowVegetationHeight" method="b" dtype="number" unit="mm"
+              label="저수목 높이" desc="저수목의 Z축 높이(mm).">
+      <b_compute>axis</b_compute>
+      <b_source>bbox</b_source>
+      <b_axis>Z</b_axis>
+      <b_scale>1000</b_scale>
+      <b_precision>0</b_precision>
+    </Property>
+  </Requirement>
+
+  <!-- 일본: 휀스 높이 -->
+  <Requirement>
+    <Object>IfcFence</Object>
+    <Pset>Pset_CPTED_JP_Fence</Pset>
+    <Property name="FenceHeight" method="b" dtype="number" unit="mm"
+              label="フェンス高さ" desc="휀스 또는 담장의 Z축 높이(mm).">
+      <b_compute>axis</b_compute>
+      <b_source>bbox</b_source>
+      <b_axis>Z</b_axis>
+      <b_scale>1000</b_scale>
+      <b_precision>0</b_precision>
+    </Property>
+  </Requirement>
+</IDS>

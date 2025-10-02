@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<IDS>
+  <!-- 단일 IDS: c-1(거리), c-2(포함) 전용 / 최소 필수 키만 사용 -->
+
+  <!-- =====================
+       c-1: 거리 기반 규칙
+       ===================== -->
+  <!-- 비상벨 간격 ≤ 25m -->
+  <Requirement id="C1-ALARM-25M">
+    <Object>IfcAlarm</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="DistanceToNearestAlarm" method="c" unit="m" tolerance="0.01">
+      <c relation="distance_to" metric="min_distance" tie_breaker="nearest">
+        <target ifc="IfcAlarm" filter='Name~"Emergency|비상|Help|SOS|Alarm"'/>
+        <threshold op="&lt;=" value="25"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- 출입문 주변 조명 ≤ 7.5m -->
+  <Requirement id="C1-DOOR-LIGHT-7_5M">
+    <Object>IfcDoor</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="NearestLightAtDoorDist" method="c" unit="m" tolerance="0.01">
+      <c relation="distance_to" metric="min_distance" tie_breaker="nearest">
+        <target ifc="IfcLightFixture"/>
+        <threshold op="&lt;=" value="7.5"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- 램프(경사로) 구간 조명 ≤ 7.5m -->
+  <Requirement id="C1-RAMP-LIGHT-7_5M">
+    <Object>IfcRamp</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="NearestLightOnRampDist" method="c" unit="m" tolerance="0.01">
+      <c relation="distance_to" metric="min_distance" tie_breaker="nearest">
+        <target ifc="IfcLightFixture"/>
+        <threshold op="&lt;=" value="7.5"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- 보행로 조명 간격 ≤ 20m -->
+  <Requirement id="C1-WALK-LIGHT-20M">
+    <Object>IfcLightFixture</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="SpacingToNearestWalkLight" method="c" unit="m" tolerance="0.01">
+      <c relation="distance_to" metric="min_distance" tie_breaker="nearest">
+        <target ifc="IfcLightFixture" filter='Name~"Walk|보행|Path|Footway|보도"'/>
+        <threshold op="&lt;=" value="20"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- =====================
+       c-2: 포함(존재) 규칙
+       ===================== -->
+  <!-- 계단실 내부 CCTV ≥ 1 -->
+  <Requirement id="C2-STAIR-CCTV">
+    <Object>IfcSpace</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="HasCCTVInStair" method="c">
+      <c relation="within" metric="count">
+        <target ifc="IfcAudioVisualAppliance" filter='Type~"Camera|CCTV"|Name~"Camera|CCTV"'/>
+        <scope filter='Name~"계단|Stair"'/>
+        <threshold op=">=" value="1"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- 계단실 외부감시 창호 ≥ 1 -->
+  <Requirement id="C2-STAIR-WINDOW">
+    <Object>IfcSpace</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="HasExteriorWindowInStair" method="c">
+      <c relation="within" metric="count">
+        <target ifc="IfcWindow"/>
+        <scope filter='Name~"계단|Stair"'/>
+        <threshold op=">=" value="1"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- 출입구 및 주변 연속 조명 ≥ 1 -->
+  <Requirement id="C2-ENTRANCE-LIGHT">
+    <Object>IfcSpace</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="HasEntranceContinuousLighting" method="c">
+      <c relation="within" metric="count">
+        <target ifc="IfcLightFixture"/>
+        <scope filter='Name~"Entrance|출입구|Lobby|현관"'/>
+        <threshold op=">=" value="1"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- 놀이터 감시수단(CCTV/경비) ≥ 1 -->
+  <Requirement id="C2-PLAYGROUND-SURV">
+    <Object>IfcSpace</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="HasSurveillanceInPlayground" method="c">
+      <c relation="within" metric="count">
+        <target ifc="IfcAudioVisualAppliance" filter='Type~"Camera|CCTV"|Name~"경비|Security|Guard|Concierge|Reception"'/>
+        <scope filter='Name~"놀이터|Playground|Play Area"'/>
+        <threshold op=">=" value="1"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- 주차장 CCTV ≥ 1 -->
+  <Requirement id="C2-PARKING-CCTV">
+    <Object>IfcSpace</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="HasCCTVInParking" method="c">
+      <c relation="within" metric="count">
+        <target ifc="IfcAudioVisualAppliance" filter='Type~"Camera|CCTV"|Name~"Camera|CCTV"'/>
+        <scope filter='Name~"주차|Parking|Carpark"'/>
+        <threshold op=">=" value="1"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- 공동출입 게이트 내부 조명 ≥ 1 -->
+  <Requirement id="C2-GATE-LIGHT">
+    <Object>IfcSpace</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="HasLightingWithinGateZone" method="c">
+      <c relation="within" metric="count">
+        <target ifc="IfcLightFixture"/>
+        <scope filter='Name~"Gate|게이트|공동출입|공용출입"'/>
+        <threshold op=">=" value="1"/>
+      </c>
+    </Property>
+  </Requirement>
+
+  <!-- 지하도·저시인 구간 비상통보장치 ≥ 1 -->
+  <Requirement id="C2-UNDERPASS-ALARM">
+    <Object>IfcSpace</Object>
+    <Pset>Pset_SpaceSecurity</Pset>
+    <Property name="HasEmergencyCallInUnderpass" method="c">
+      <c relation="within" metric="count">
+        <target ifc="IfcAlarm" filter='Name~"Emergency|비상|Help|SOS|Alarm"'/>
+        <scope filter='Name~"지하도|Underpass|Subway Passage|지하 보행로"'/>
+        <threshold op=">=" value="1"/>
+      </c>
+    </Property>
+  </Requirement>
+</IDS>
